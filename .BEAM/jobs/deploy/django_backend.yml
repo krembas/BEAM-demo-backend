@@ -1,0 +1,26 @@
+---
+- hosts: django_backend
+  vars:
+    project_roles: "../../roles"
+  roles:
+    - { role: beam.git, action: deploy }
+
+    - { role: "{{project_roles}}/project", action: deploy}
+
+    - { role: beam.django, action: deploy, params: {
+          virtualenv_python_version: 3.5,
+          django_wsgi_module: djangoapp.wsgi,
+          django_project_name: "{{ BEAM_VARS.PROJECT.NAME }}",
+          django_project_root: "{{ BEAM_VARS.PROJECT.NAME }}"
+        }
+      }
+
+    - { role: beam.nginx, action: deploy, params: {
+          nginx_domain: localhost,
+          nginx_host: 127.0.0.1,
+          nginx_port: 8081,
+          nginx_client_max_body_size: 100K,
+          nginx_project_name: "{{ BEAM_VARS.PROJECT.NAME }}",
+          nginx_site_conf_file_template: templates/nginx_django_app.conf
+        }
+      }

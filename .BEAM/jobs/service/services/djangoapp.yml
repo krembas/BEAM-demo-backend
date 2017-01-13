@@ -1,0 +1,26 @@
+---
+- name: start djangoapp service
+  service: name={{ item }} state=started enabled=yes
+  become: yes
+  with_items:
+    - nginx
+  when: BEAM_VARS.JOB.SERVICE_COMMAND=="start" and inventory_hostname=="django_backend"
+
+- name: restart djangoapp service
+  service: name={{ item }} state=restarted enabled=yes
+  become: yes
+  with_items:
+    - nginx
+  when: BEAM_VARS.JOB.SERVICE_COMMAND=="restart" and inventory_hostname=="django_backend"
+
+- name: reload djangoapp service
+  shell: "/home/vagrant/{{ BEAM_VARS.PROJECT.NAME }}/.venv/bin/uwsgi --ini /home/vagrant/{{ BEAM_VARS.PROJECT.NAME }}/uwsgi.ini"
+  become: yes
+  when: BEAM_VARS.JOB.SERVICE_COMMAND=="reload" and inventory_hostname=="django_backend"
+
+- name: stop djangoapp service
+  service: name={{ item }} state=stopped enabled=yes
+  become: yes
+  with_items:
+    - nginx
+  when: BEAM_VARS.JOB.SERVICE_COMMAND=="stop" and inventory_hostname=="django_backend"

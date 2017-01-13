@@ -1,0 +1,8 @@
+---
+- hosts: django_backend
+  roles:
+    - { role: beam.include-yml-files, params: {
+          tasks: "{{ BEAM_VARS.JOB.SERVICES }}",
+          tasks_path: services,
+        }
+      }

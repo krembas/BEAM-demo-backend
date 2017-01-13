@@ -1,0 +1,11 @@
+---
+- hosts: postgres_db
+
+  roles:
+    - { role: beam.postgresql, action: install }
+
+    - { role: beam.postgresql, action: deploy, params: {
+          postgresql_version: 9.5
+        }
+      }
+

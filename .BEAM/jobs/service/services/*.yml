@@ -1,0 +1,8 @@
+---
+- name: "{{ BEAM_VARS.JOB.SERVICE_COMMAND }} all project services"
+  include: services/{{ yml_file_item }}
+  with_items:
+   - db.yml
+   - djangoapp.yml
+  loop_control:
+    loop_var: yml_file_item

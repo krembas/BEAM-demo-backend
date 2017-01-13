@@ -1,0 +1,9 @@
+---
+  - name: Install/update common packages
+    apt:
+      name: "{{ item }}"
+      state: present
+      update_cache: no
+    with_items:
+      - mc
+    become: yes

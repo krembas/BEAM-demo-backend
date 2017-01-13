@@ -1,0 +1,28 @@
+---
+- name: start db service
+  service: name={{ item }} state=started enabled=yes
+  become: yes
+  with_items:
+    - postgresql
+  when: BEAM_VARS.JOB.SERVICE_COMMAND=="start" and inventory_hostname=="postgres_db"
+
+- name: restart db service
+  service: name={{ item }} state=restarted enabled=yes
+  become: yes
+  with_items:
+    - postgresql
+  when: BEAM_VARS.JOB.SERVICE_COMMAND=="restart" and inventory_hostname=="postgres_db"
+
+- name: reload db service
+  service: name={{ item }} state=reloaded enabled=yes
+  become: yes
+  with_items:
+    - postgresql
+  when: BEAM_VARS.JOB.SERVICE_COMMAND=="reload" and inventory_hostname=="postgres_db"
+
+- name: stop db service
+  service: name={{ item }} state=stopped enabled=yes
+  become: yes
+  with_items:
+    - postgresql
+  when: BEAM_VARS.JOB.SERVICE_COMMAND=="stop" and inventory_hostname=="postgres_db"
