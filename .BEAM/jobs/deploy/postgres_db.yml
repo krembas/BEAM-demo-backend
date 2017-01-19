@@ -5,7 +5,11 @@
     - { role: beam.postgresql, action: install }
 
     - { role: beam.postgresql, action: deploy, params: {
-          postgresql_version: 9.5
+          postgresql_version: 9.5,
+          pg_hba_conf_file_template: "templates/pg_hba.conf.j2",
+          db_name: pfcdb,
+          db_user_login: djangoapp,
+          db_user_password: djang0apppassw0rd,
         }
       }
 

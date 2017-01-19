@@ -11,7 +11,10 @@
           virtualenv_python_version: 3.5,
           django_wsgi_module: djangoapp.wsgi,
           django_project_name: "{{ BEAM_VARS.PROJECT.NAME }}",
-          django_project_root: "{{ BEAM_VARS.PROJECT.NAME }}"
+          django_project_root: "{{ BEAM_VARS.PROJECT.NAME }}",
+          db_name: pfcdb,
+          db_user_login: djangoapp,
+          db_user_password: djang0apppassw0rd,
         }
       }
 
