@@ -1,5 +1,5 @@
 ---
-- name: "{{ BEAM_VARS.JOB.SERVICE_COMMAND }} all project services"
+- name: "{{ BEAM_VARS.JOB.SERVICE_COMMAND }} all project component services"
   include: services/{{ yml_file_item }}
   with_items:
    - db.yml

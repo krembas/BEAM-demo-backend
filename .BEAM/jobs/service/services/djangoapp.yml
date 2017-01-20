@@ -14,7 +14,7 @@
   when: BEAM_VARS.JOB.SERVICE_COMMAND=="restart" and inventory_hostname=="django_backend"
 
 - name: reload djangoapp service
-  shell: "/home/vagrant/{{ BEAM_VARS.PROJECT.NAME }}/.venv/bin/uwsgi --ini /home/vagrant/{{ BEAM_VARS.PROJECT.NAME }}/uwsgi.ini"
+  shell: "/home/vagrant/{{ BEAM_VARS.COMPONENT.NAME }}/.venv/bin/uwsgi --ini /home/vagrant/{{ BEAM_VARS.COMPONENT.NAME }}/uwsgi.ini"
   become: yes
   when: BEAM_VARS.JOB.SERVICE_COMMAND=="reload" and inventory_hostname=="django_backend"
 
