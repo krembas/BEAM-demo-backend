@@ -12,6 +12,7 @@
           django_wsgi_module: djangoapp.wsgi,
           django_project_name: "{{ BEAM_VARS.COMPONENT.NAME }}",
           django_project_root: "{{ BEAM_VARS.COMPONENT.NAME }}",
+          django_local_settings_template: templates/local_settings.py.j2,
           db_name: pfcdb,
           db_user_login: djangoapp,
           db_user_password: djang0apppassw0rd,
